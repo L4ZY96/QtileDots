@@ -1,6 +1,8 @@
 # L4ZY DOTFILES
 
-<img src="qtile/assets/preview.png" align="center">
+<img src="assets/preview1.png" align="center">
+<img src="assets/preview2.png" align="center">
+<img src="assets/preview.png" align="center">
 
 ## requirements
 
