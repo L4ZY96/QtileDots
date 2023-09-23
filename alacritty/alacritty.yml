@@ -1,0 +1,79 @@
+#  █████╗ ██╗      █████╗  ██████╗██████╗ ██╗████████╗████████╗██╗   ██╗    
+# ██╔══██╗██║     ██╔══██╗██╔════╝██╔══██╗██║╚══██╔══╝╚══██╔══╝╚██╗ ██╔╝    
+# ███████║██║     ███████║██║     ██████╔╝██║   ██║      ██║    ╚████╔╝     
+# ██╔══██║██║     ██╔══██║██║     ██╔══██╗██║   ██║      ██║     ╚██╔╝      
+# ██║  ██║███████╗██║  ██║╚██████╗██║  ██║██║   ██║      ██║      ██║       
+# ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝   ╚═╝      ╚═╝      ╚═╝                                                                          
+
+# https://github.com/L4ZYP4CM4N/DOTFILES
+
+window:
+  padding:
+    x: 10
+    y: 10
+  class:
+    instance: Alacritty
+    general: Alacritty
+  opacity: 0.80
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
+font:
+  normal:
+    family: JetBrainsMono
+    style:  Regular 
+  bold:
+    family: JetBrainsMono
+    style:  Bold
+  italic:
+    family: JetBrainsMono
+    style:  Italic
+  bold_italic:
+    family: JetBrainsMono
+    style: Bold Italic
+  size: 8 
+
+draw_bold_text_with_bright_colors: true
+
+cursor:
+  style:
+    shape: Block # Block, Beam, Underline
+    blinking: Off
+    blinking-interval: 750
+
+# Available themes are: 
+ # catppuccin.yaml 
+ # cake.yaml 
+ # tokyo.yaml.yaml 
+ # tokyo-night.yaml 
+ # argonaut.yaml # favorite
+ # dracula.yaml 
+ # hard hacker.yaml 
+ # horizon-dark.yaml 
+ # moonlight.yaml 
+ # omni.yaml 
+ # palenight.yaml 
+ # snazzy.yaml 
+
+import:
+  - ~/.config/alacritty/argonaut.yaml
+
+selection:
+  save_to_clipboard: true
+
+shell:
+  program: /usr/bin/zsh
+
+key_bindings:
+  - { key: Return, mods: Control|Shift, action: SpawnNewInstance }
+
+  - { key: Key0, mods: Control, action: ResetFontSize }
+
+  - { key: Equals, mods: Control, action: IncreaseFontSize }
+
+  - { key: Minus, mods: Control, action: DecreaseFontSize }
+
+# shift + control + space = view mode
+# in view mode + v = select

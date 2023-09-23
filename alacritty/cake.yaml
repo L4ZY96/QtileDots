@@ -1,0 +1,39 @@
+colors:
+  primary:
+    background: '#1E1E2E'
+    foreground: '0xd6d6d6'
+
+  cursor:
+    text: '#CDD6F4'
+    cursor: '#D9D9D9'
+
+    # Normal colors
+    normal:
+      black:   '#1c1f24'
+      red:     '#ff6c6b'
+      green:   '#98be65'
+      yellow:  '#da8548'
+      blue:    '#51afef'
+      magenta: '#c678dd'
+      cyan:    '#5699af'
+      white:   '#abb2bf'
+    
+    bright:
+      black:   '#5b6268'
+      red:     '#da8548'
+      green:   '#4db5bd'
+      yellow:  '#ecbe7b'
+      blue:    '#3071db'   # This is 2257a0 in Doom Emacs but I lightened it.
+      magenta: '#a9a1e1'
+      cyan:    '#46d9ff'
+      white:   '#dfdfdf'
+
+    dim:
+        black: "#45475A" # surface1
+        red: "#F38BA8" # red
+        green: "#A6E3A1" # green
+        yellow: "#F9E2AF" # yellow
+        blue: "#89B4FA" # blue
+        magenta: "#F5C2E7" # pink
+        cyan: "#94E2D5" # teal
+        white: "#BAC2DE" # subtext1

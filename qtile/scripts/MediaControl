@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+# https://github.com/L4ZYP4CM4N/DOTFILES
+
+[ -n "$(pgrep spotify)" ] && Control="spotify"
+# [ -n "$(pgrep brave-bin)" ] && Control="brave-bin"
+# [ -n "$(pgrep rhythmbox)" ] && Control="rhythmbox"
+# [ -n "$(pgrep audacious)" ] && Control="audacious"
+# [ -n "$(pgrep clementine)" ] && Control="clementine"
+# [ -n "$(pgrep strawberry)" ] && Control="strawberry"
+
+########################## Title ##########################
+title() {
+title=$(playerctl --player=$Control metadata --format {{title}})
+[ -z "$title" ] && title="Play Something"
+echo "$title"
+}
+
+########################## Artist ##########################
+artist() {
+artist=$(playerctl --player=$Control metadata --format {{artist}})
+[ -z "$artist" ] && artist="Artist"
+echo "$artist"
+}
+
+########################## Album ##########################
+album() {
+album=$(playerctl --player=$Control metadata --format {{album}})
+[ -z "$album" ] && album="Album"
+echo "$album"
+}
+
+########################## Status ##########################
+status() {
+status=$(playerctl --player=$Control status)
+[ -z "$status" ] && status="Stopped"
+echo "$status"
+}
+
+########################## Time ##########################
+ctime() {
+time=$(playerctl --player=$Control position --format "{{ duration(position) }}")
+[ -z "$time" ] && time="0:00"
+echo "$time"
+}
+
+########################## Length ##########################
+length() {
+length=$(playerctl --player=$Control metadata --format "{{ duration(mpris:length) }}")
+[ -z "$length" ] && length="0:00"
+echo "$length"
+}
+
+########################## trackNumber ##########################
+playlist() {
+playlist=$(playerctl --player=$Control metadata xesam:trackNumber)
+[ -z "$playlist" ] && playlist="0"
+echo "$playlist"
+}
+
+########################## Cover ##########################
+cover() {
+albumart="$(playerctl --player=$Control metadata mpris:artUrl | sed -e 's/open.spotify.com/i.scdn.co/g')"
+[ $(playerctl --player=$Control metadata mpris:artUrl) ] && curl -s "$albumart" --output $Cover || cp $bkpCover $Cover 
+echo "$Cover"
+}
+
+########################## Statusicon ##########################
+statusicon() {
+icon=""
+[ $(playerctl --player=$Control status) = "Playing" ] && icon=""
+[ $(playerctl --player=$Control status) = "Paused" ] && icon=""
+echo "$icon"
+}
+
+########################## Lyrics ##########################
+lyrics() {
+Title=$(playerctl --player=$Control metadata --format {{title}})
+Artist=$(playerctl --player=$Control metadata --format {{artist}})
+URL="https://api.lyrics.ovh/v1/$Artist/$Title"
+lyrics=$(curl -s "$( echo "$URL" | sed s/" "/%20/g | sed s/"&"/%26/g | sed s/,/%2C/g | sed s/-/%2D/g)" | jq '.lyrics' )
+[ "$lyrics" = "null" ] && lyrics=$( curl -s --get "https://makeitpersonal.co/lyrics" --data-urlencode "artist=$Artist" --data-urlencode "title=$Title")
+printf "$lyrics" | less
+}
